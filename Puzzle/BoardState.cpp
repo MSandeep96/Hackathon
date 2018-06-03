@@ -17,9 +17,7 @@ BoardState::BoardState(BoardState boardState, char moved)
     if(moved != '$')
         this->moves = boardState.moves + moved;
     this->board.makeMove(moved);
-    this->board.print();
     this->cost = moves.length() + this->board.heuristic();
-    std::cout<<this->cost<<std::endl;
     this->solved = this->board.isSolved();
 }
 
