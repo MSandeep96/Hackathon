@@ -4,8 +4,6 @@ PriorityHeap::PriorityHeap()
 {
 }
 
-
-
 void PriorityHeap::enqueue(BoardState a)
 {
     heap.push_back(a);

@@ -66,16 +66,31 @@ bool Board::isSolved(){
                 return false;
         }
     }
+    return true;
+}
+
+int orgPosX(int num){
+    return (num -1) / 4;
+}
+
+int orgPosY(int num){
+    return (num - 1) % 4;
 }
 
 int Board::heuristic(){
     int h = 0;
     for(int i=0;i<4;i++){
         for(int j=0;j<4;j++){
-            h += abs(pos[board[i][j]].first - i) + abs(pos[board[i][j]].second - j);
+            if(board[i][j] == -1){
+                h+= 3 - i + 3 - j;
+            }else{
+                h += abs(orgPosX(board[i][j]) - i) + abs(orgPosY(board[i][j])- j);
+            }
         }
     }
     return h;
 }
+
+
 
 

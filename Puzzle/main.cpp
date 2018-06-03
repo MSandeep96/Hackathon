@@ -21,7 +21,7 @@ std::vector<std::string> split(const std::string &s, char delim) {
 
 string solve(Board board){
     PriorityHeap mHeap;
-    mHeap.enqueue(BoardState(board,'$'));
+    mHeap.enqueue(BoardState(board));
 
     while(!mHeap.empty()){
 
@@ -33,10 +33,11 @@ string solve(Board board){
         vector<char> validMoves = curState.validMoves();
 
         for(int i=0;i<validMoves.size();i++){
-            BoardState nextState(curState.board,validMoves[i]);
+            BoardState nextState(curState,validMoves[i]);
             mHeap.enqueue(nextState);
         }
     }
+    return "";
 }
 
 /**

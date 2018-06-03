@@ -7,7 +7,8 @@ class BoardState
 {
     public:
         BoardState();
-        BoardState(Board board, char moved);
+        BoardState(Board board);
+        BoardState(BoardState BoardState, char moved);
         std::string moves;
         int cost;
         bool solved;
