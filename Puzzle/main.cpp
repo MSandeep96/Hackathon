@@ -21,7 +21,7 @@ std::vector<std::string> split(const std::string &s, char delim) {
 
 string solve(Board board){
     PriorityHeap mHeap;
-    mHeap.enqueue(BoardState(board,'$'));
+    mHeap.enqueue(BoardState(board));
 
     while(!mHeap.empty()){
 
@@ -33,10 +33,11 @@ string solve(Board board){
         vector<char> validMoves = curState.validMoves();
 
         for(int i=0;i<validMoves.size();i++){
-            BoardState nextState(curState.board,validMoves[i]);
+            BoardState nextState(curState,validMoves[i]);
             mHeap.enqueue(nextState);
         }
     }
+    return "";
 }
 
 /**
@@ -44,12 +45,12 @@ string solve(Board board){
 */
 int main(int argc, char** argv)
 {
-    if(argc < 2){
+ /*   if(argc < 2){
         cout<<"Invalid no. of arguments";
         return -1;
-    }
+   }*/
     //config string
-    string boardConfig = argv[1];
+    string boardConfig = "1,2,3,4,5,6,7,8,9,10,11,12,-1,13,14,15";
     vector<string> blobs = split(boardConfig,',');
     vector<vector<int>> board;
     int jB,iB;

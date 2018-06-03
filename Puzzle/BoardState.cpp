@@ -4,14 +4,21 @@
 BoardState::BoardState(){
 }
 
-BoardState::BoardState(Board board, char moved)
-{
+BoardState::BoardState(Board board){
     this->board = board;
+    this->moves = "";
+    this->cost = this->board.heuristic();
+    this->solved = this->board.isSolved();
+}
+
+BoardState::BoardState(BoardState boardState, char moved)
+{
+    this->board = boardState.board;
     if(moved != '$')
-        this->moves = this->moves + moved;
-    board.makeMove(moved);
-    this->cost = moves.length() + board.heuristic();
-    this->solved = board.isSolved();
+        this->moves = boardState.moves + moved;
+    this->board.makeMove(moved);
+    this->cost = moves.length() + this->board.heuristic();
+    this->solved = this->board.isSolved();
 }
 
 std::vector<char> BoardState::validMoves(){

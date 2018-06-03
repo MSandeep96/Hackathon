@@ -27,3 +27,31 @@
 1527940594 source:d:\hackathonhelper\puzzle\priorityheap.cpp
 	"PriorityHeap.h"
 
+1528008335 source:d:\hackathon\puzzle\main.cpp
+	<bits/stdc++.h>
+	"Board.h"
+	"PriorityHeap.h"
+
+1527973541 d:\hackathon\puzzle\board.h
+	"bits/stdc++.h"
+
+1527939269 d:\hackathon\puzzle\priorityheap.h
+	"BoardState.h"
+	"bits/stdc++.h"
+
+1528007897 d:\hackathon\puzzle\boardstate.h
+	"Board.h"
+	<bits/stdc++.h>
+
+1528007805 source:d:\hackathon\puzzle\boardstate.cpp
+	"BoardState.h"
+	"Board.h"
+
+1528007965 source:d:\hackathon\puzzle\priorityheap.cpp
+	"PriorityHeap.h"
+
+1528008295 source:d:\hackathon\puzzle\board.cpp
+	"Board.h"
+	<bits/stdc++.h>
+	"PriorityHeap.h"
+
