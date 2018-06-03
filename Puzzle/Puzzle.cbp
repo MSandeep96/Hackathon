@@ -32,6 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Board.cpp" />
+		<Unit filename="Board.h" />
+		<Unit filename="BoardState.cpp" />
+		<Unit filename="BoardState.h" />
+		<Unit filename="PriorityHeap.cpp" />
+		<Unit filename="PriorityHeap.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

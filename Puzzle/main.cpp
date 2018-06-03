@@ -19,19 +19,40 @@ std::vector<std::string> split(const std::string &s, char delim) {
     return elems;
 }
 
+int randomVal(int i){ return rand()% i;}
+
+bool isOpposite(char cur,char last){
+    switch(cur){
+        case 'u':
+            return last=='d';
+        case 'l':
+            return last=='r';
+        case 'r':
+            return last=='l';
+        case 'd':
+            return last=='u';
+    }
+    return false;
+}
+
 string solve(Board board){
     PriorityHeap mHeap;
     mHeap.enqueue(BoardState(board));
-
+    int movesSoFar = 0;
     while(!mHeap.empty()){
-
+        movesSoFar++;
+        if(movesSoFar > 300)
+            return "&Unsolvable&";
         BoardState curState = mHeap.dequeue();
-
         if(curState.solved)
             return curState.moves;
-
         vector<char> validMoves = curState.validMoves();
-
+        random_shuffle(validMoves.begin(), validMoves.end(), randomVal);
+        char lastStep = curState.lastStep();
+        for(int i=0;i<validMoves.size();i++){
+            if(isOpposite(validMoves[i],lastStep))
+               validMoves.erase(validMoves.begin() + i);
+        }
         for(int i=0;i<validMoves.size();i++){
             BoardState nextState(curState,validMoves[i]);
             mHeap.enqueue(nextState);
@@ -45,10 +66,11 @@ string solve(Board board){
 */
 int main(int argc, char** argv)
 {
- /*   if(argc < 2){
-        cout<<"Invalid no. of arguments";
+    if(argc < 2){
+        cerr<<"Invalid no. of arguments";
         return -1;
-   }*/
+    }
+    srand(unsigned(time(0)));
     //config string
     string boardConfig = "1,2,3,4,5,6,7,8,9,10,11,12,-1,13,14,15";
     vector<string> blobs = split(boardConfig,',');
