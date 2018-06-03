@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 var solver = require('../algoutil/solveboard');
-var pick = require('loadash.pick');
+var pick = require('lodash.pick');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

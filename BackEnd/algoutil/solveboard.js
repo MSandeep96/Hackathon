@@ -8,7 +8,7 @@ var solveBoard = function(boardConfig) {
       if(err){
         reject(err);
       }
-      resolve(stdout, end.getTime() - start.getTime());
+      resolve(stdout,end.getTime() - start.getTime());
     });
   });
 };
