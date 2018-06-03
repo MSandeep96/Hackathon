@@ -17,10 +17,16 @@ BoardState::BoardState(BoardState boardState, char moved)
     if(moved != '$')
         this->moves = boardState.moves + moved;
     this->board.makeMove(moved);
+    this->board.print();
     this->cost = moves.length() + this->board.heuristic();
+    std::cout<<this->cost<<std::endl;
     this->solved = this->board.isSolved();
 }
 
 std::vector<char> BoardState::validMoves(){
     return board.validMoves();
+}
+
+char BoardState::lastStep(){
+    return moves[moves.length()-1];
 }

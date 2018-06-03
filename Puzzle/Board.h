@@ -11,6 +11,7 @@ class Board
         int heuristic();
         std::vector<char> validMoves();
         void makeMove(char moved);
+        void print();
     protected:
 
     private:

@@ -17,6 +17,7 @@ BoardState PriorityHeap::dequeue()
     BoardState end_v, val;
     val = heap[0];
     end_v = heap.back();
+    heap.pop_back();
     if(!empty()){
         heap[0] = end_v;
         bubbleDown(0);
@@ -53,7 +54,7 @@ void PriorityHeap::bubbleDown(int curPos)
     }
     if((rightPos < heap.size()) && heap[rightPos].cost < heap[leftPos].cost
         && heap[rightPos].cost < cur.cost) {
-        swapPos = leftPos;
+        swapPos = rightPos;
     }
     if(swapPos != -1){
         heap[curPos] = heap[swapPos];

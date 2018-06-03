@@ -14,6 +14,7 @@ class BoardState
         bool solved;
         Board board;
         std::vector<char> validMoves();
+        char lastStep();
     protected:
 
     private:
