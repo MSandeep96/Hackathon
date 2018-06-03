@@ -32,22 +32,22 @@ class UserClass {
     return this.findOne({ username: user.username })
       .then(doc => {
         if(!doc){
-          return new UserClass(user).save();
+          return new User(user).save();
         }else{
-          login(doc);
+          return this.login(user,doc);
         }
       });
   }
 
-  static login(user){
+  static login(user,doc){
     return bcrypt.compare(user.password,doc.password)
       .then((res)=>{
         if(res){
           doc.login = true;
-          return doc;
+          return Promise.resolve(doc);
         }
         else
-          throw createError(401,'Incorrect password');
+          return Promise.reject(createError(401,'Incorrect password'));
       });
   }
 
@@ -86,7 +86,7 @@ class UserClass {
   }
 
   getUserConfig(){
-    return pick(this,['currConfig','currTime','movesMade']);
+    return Promise.resolve(pick(this,['currConfig','currTime','movesMade']));
   }
 
   gameCompleted(boardConfig){
@@ -100,12 +100,18 @@ class UserClass {
 
 }
 
+userSchema.methods.toJSON = function () {
+  var user = this.toObject();
+  return pick(user, ['username']);
+}
+
+
 userSchema.loadClass(UserClass);
 
 userSchema.pre('save', function(next){
   var user = this;
   if(user.isModified('password')){
-    bcrypt.hash(user.password).then((hash)=>{
+    bcrypt.hash(user.password,10).then((hash)=>{
       user.password = hash;
       next();
     });

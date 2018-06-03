@@ -28,9 +28,6 @@ router.use(function(req,res){
   var user = req.body;
   user.genToken().then((token) => {
     res.header('x-auth', token);
-    if(user.login){
-      res.redirect('/game');  //goes to get
-    }
     res.send(user);
   });
 });
