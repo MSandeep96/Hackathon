@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
 import BoardGrid from './Board/BoardGrid';
+import Complete from '../PopUp/Complete';
 
 class Game extends Component {
 
-  constructor(props){
-    super(props);
+  state = {
+    gameComplete: false
+  };
+
+  gameComplete = (newGame) => {
+    this.setState({
+      gameCompletedMode: true,
+      newGame: newGame
+    });
+  }
+
+  newGame = () => {
+    this.state.newGame();
+    this.setState({
+      gameCompletedMode: false
+    });
+  }
+
+  solve = () =>{
+
   }
 
   render() {
     return (
       <div>
-        <BoardGrid />
+        <BoardGrid gameComplete={this.gameComplete} />
+        {this.state.gameCompletedMode
+          && <Complete moves={this.state.moves} time={this.state.time} newGame={this.newGame} />}
       </div>
     );
   }

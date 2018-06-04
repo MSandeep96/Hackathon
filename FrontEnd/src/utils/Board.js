@@ -12,6 +12,26 @@ export default class Board {
     Board.makeMove(brd,a);
   }
 
+  static actualPosX(num){
+    if(num === -1) return 3;
+    return ~~((num - 1) / 4);
+  }
+
+  static actualPosY(num){
+    if(num === -1) return 3;
+    return ((num - 1) % 4);
+  }
+
+  static isComplete(brd){
+    for(let i=0;i<4;i++){
+      for(let j=0;j<4;j++){
+        if(Board.actualPosX(brd.board[i][j]) !== i || Board.actualPosY(brd.board[i][j]) !== j)
+          return false;
+      }
+    }
+    return true;
+  }
+
   static makeMove(brd, a) {
     if (a === 'd') {
       brd.board[brd.bpi][brd.bpj] = brd.board[brd.bpi][brd.bpj - 1];
@@ -48,27 +68,19 @@ export default class Board {
     return valMoves;
   }
 
-  static fetchNewBoard(){
-    const randomString = Board.createRandomConfig();
-    let board = new Board();
-    for(let i=0;i<randomString.length;i++){
-      board.makeMove(randomString[i]);
-    }
-    return board;
-  }
-
-  static createRandomConfig(){
-    var config = "", moves = "wasd", last = "";
+  static createRandomBoard(){
+    let board = new Board(), last = "";
     let i = 0;
-    while(i < 80){
-      var move = moves[~~(Math.random()*4)];
+    while(i < 5){
+      let valM = Board.validMoves(board);
+      let move = valM[~~(Math.random() * 4)];
       if(!Board.isOppositeLast(move,last)){
         i++;
-        config += move;
+        Board.makeMove(board, move);
         last = move;
       }
     }
-    return config;
+    return board;
   }
 
   static isOppositeLast(pre,last){
@@ -84,6 +96,16 @@ export default class Board {
       default:
         return false;
     }
+  }
+
+  static getConfigString(brd){
+    let config = "";
+    for(let i=0;i<brd.length;i++){
+      for(let j=0;j<brd[i].length;j++){
+        config += brd[i][j] + ',';
+      }
+    }
+    return config.substr(0,config.length-1);
   }
 
 }

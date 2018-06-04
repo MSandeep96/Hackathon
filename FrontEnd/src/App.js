@@ -3,6 +3,7 @@ import './App.css';
 import TitleBar from './components/TitleBar';
 import Login from './components/PopUp/Login';
 import Game from './components/Game/Game';
+import LeaderBoard from './components/LeaderBoard/LeaderBoard';
 
 class App extends Component {
 
@@ -10,7 +11,8 @@ class App extends Component {
     super(props);
     this.state = {
       isLoggedIn : false,
-      showLoginDialog: false
+      showLoginDialog: false,
+      showCompleteDialog: false
     };
   }
 
@@ -50,6 +52,7 @@ class App extends Component {
         <TitleBar isLoggedIn={this.state.isLoggedIn}
           handleLogin={this.handleLogin}/>
         {this.state.showLoginDialog && <Login loginSuccess={this.loginSuccess} close={this.closeDialog}/>}
+        {/* <LeaderBoard /> */}
         <Game />
       </div>
     );

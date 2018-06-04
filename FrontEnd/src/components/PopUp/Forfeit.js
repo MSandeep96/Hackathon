@@ -40,7 +40,6 @@ export default class Forfeit extends React.Component {
             <DialogContentText>
               Forfeiting will let computer solve for you and you will not be given any score. To continue, click yes.
             </DialogContentText>
-            
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
