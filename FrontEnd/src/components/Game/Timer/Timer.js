@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import getTime from '../../../utils/Time';
+import Typography from '@material-ui/core/Typography';
 
 class Timer extends Component {
 
@@ -38,7 +39,10 @@ class Timer extends Component {
   render() {
     return (
       <div>
-        {getTime(this.state.time)}
+        <Typography variant="headline" gutterBottom align="center">
+          {getTime(this.state.time)}
+        </Typography>
+        
       </div>
     );
   }
