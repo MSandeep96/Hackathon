@@ -17,17 +17,12 @@ router.get('/leaderboard', function(req,res,next) {
 
 router.post('/solve', function(req,res,next){
   solver(req.body.config)
-  .then((moves,timeTaken)=>{
-    var answer = {
-      moves,
-      timeTaken
-    };
-    res.send(answer);
+  .then((ans)=>{
+    res.send(ans);
   })
   .catch((err)=>{
     console.log(err);
   });
 });
-
 
 module.exports = router;

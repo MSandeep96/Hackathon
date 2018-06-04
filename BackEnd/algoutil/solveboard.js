@@ -9,7 +9,10 @@ var solveBoard = function(boardConfig) {
       if(err){
         reject(err);
       }
-      resolve(stdout,end.getTime() - start.getTime());
+      resolve({
+        moves: stdout,
+        time: end.getTime() - start.getTime()
+      });
     });
   });
 };
