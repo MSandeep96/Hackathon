@@ -1,4 +1,5 @@
 import React from { Component } 'react';
+import './Forfeit.css';
 
 class Forfeit extends Component {
   render() {

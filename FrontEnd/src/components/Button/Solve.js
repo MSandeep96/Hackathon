@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import Forfeit from '/Forfeit';
+import './Forfeit';
 
 class Solve extents Component {
 
@@ -32,3 +32,5 @@ class Solve extents Component {
   	}
 
 }
+
+export default Solve;
