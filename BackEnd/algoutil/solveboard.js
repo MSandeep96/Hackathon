@@ -10,11 +10,28 @@ var solveBoard = function(boardConfig) {
         reject(err);
       }
       resolve({
-        moves: stdout,
+        moves: convertAns(stdout),
         time: end.getTime() - start.getTime()
       });
     });
   });
 };
+
+function convertAns(str){
+  let ans = "";
+  for(let i=0;i<str.length;i++){
+    ans += getOpp(str[i]);
+  }
+  return ans;
+}
+
+function getOpp(dir){
+  switch(dir){
+    case "u": return "s";
+    case "d": return "w";
+    case "l": return "d";
+    case "r": return "a";
+  }
+}
 
 module.exports = solveBoard;
