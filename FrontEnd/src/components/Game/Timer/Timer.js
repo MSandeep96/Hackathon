@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import getTime from '../../../utils/Time';
 
 class Timer extends Component {
 
@@ -34,22 +35,10 @@ class Timer extends Component {
     clearInterval(this.inter);
   }
 
-  getTime = ()=>{
-    var time = this.state.time;
-    let milSecs = time % 10;
-    let secs = time / 10;
-    let mins = secs / 60;
-    let hours = mins / 60;
-    secs %= 60;
-    mins %= 60;
-    hours %= 60;
-    return `${hours}:${mins}:${secs}.${milSecs}`;
-  }
-
   render() {
     return (
       <div>
-        {this.getTime()}
+        {getTime(this.state.time)}
       </div>
     );
   }

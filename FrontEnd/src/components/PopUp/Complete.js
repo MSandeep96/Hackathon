@@ -5,6 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import getTime from '../../utils/Time';
 
 export default class Complete extends React.Component {
 
@@ -19,7 +20,7 @@ export default class Complete extends React.Component {
           <DialogTitle id="form-dialog-title">Congrats!</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              You completed the game in {this.props.time} time and {this.props.moves} moves.
+              You completed the game in {getTime(this.props.time)} time and {this.props.moves.length} moves.
             </DialogContentText>
             
           </DialogContent>

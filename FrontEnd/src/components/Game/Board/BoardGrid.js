@@ -24,11 +24,14 @@ class BoardGrid extends React.Component {
     super(props);
     this.state = {
       board: Board.createRandomBoard(),
-      gameStarted: false
+      gameStarted: false,
+      inSolveState: false
     };
   }
 
   newGame = ()=>{
+    if(this.inSolveState)
+      return;
     this.setState({
       board: Board.createRandomBoard(),
       gameStarted: false
@@ -36,7 +39,7 @@ class BoardGrid extends React.Component {
   }
 
   keyPressed = (e) => {
-    if("wasd".indexOf(e.key) === -1)
+    if("wasd".indexOf(e.key) === -1 || this.state.inSolveState)
       return;
     if(!this.state.gameStarted){
       this.state.startT();
@@ -47,7 +50,7 @@ class BoardGrid extends React.Component {
     var board = {...this.state.board};
     Board.checkAndMove(board,e.key);
     if(Board.isComplete(board)){
-      this.props.gameComplete(this.newGame, this.state.stopT, board.moves);  
+      this.props.gameComplete(this.newGame, this.state.stopT(), board.moves);  
     }
     this.setState({
       board
@@ -55,9 +58,13 @@ class BoardGrid extends React.Component {
   }
 
   solve = ()=>{
+    if(this.state.inSolveState)
+      return;
     let config = Board.getConfigString(this.state.board.board);
     solve(config).then((res)=>{
-      console.log(res);
+      this.setState({
+        inSolveState: true
+      });
       this.startSolveSequence(res,0);
     });
   }
@@ -70,6 +77,10 @@ class BoardGrid extends React.Component {
     });
     if(i < res.length){
       this.timeOut = setTimeout(this.startSolveSequence, 1000, res, i+1);
+    }else{
+      this.setState({
+        inSolveState : false
+      });
     }
   }
 
