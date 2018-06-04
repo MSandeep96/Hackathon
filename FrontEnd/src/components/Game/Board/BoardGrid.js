@@ -62,10 +62,11 @@ class BoardGrid extends React.Component {
       return;
     let config = Board.getConfigString(this.state.board.board);
     solve(config).then((res)=>{
+      console.log(res);
       this.setState({
         inSolveState: true
       });
-      this.startSolveSequence(res,0);
+      this.startSolveSequence(res.moves,0);
     });
   }
 
@@ -75,6 +76,7 @@ class BoardGrid extends React.Component {
     this.setState({
       board
     });
+    console.log(res,i);
     if(i < res.length){
       this.timeOut = setTimeout(this.startSolveSequence, 1000, res, i+1);
     }else{

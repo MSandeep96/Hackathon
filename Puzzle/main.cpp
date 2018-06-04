@@ -38,11 +38,7 @@ bool isOpposite(char cur,char last){
 string solve(Board board){
     PriorityHeap mHeap;
     mHeap.enqueue(BoardState(board));
-    int movesSoFar = 0;
     while(!mHeap.empty()){
-        movesSoFar++;
-        if(movesSoFar > 300)
-            return "&Unsolvable&";
         BoardState curState = mHeap.dequeue();
         if(curState.solved)
             return curState.moves;
@@ -72,7 +68,7 @@ int main(int argc, char** argv)
     }
     srand(unsigned(time(0)));
     //config string
-    string boardConfig = "1,2,3,4,5,6,7,8,9,10,11,12,-1,13,14,15";
+    string boardConfig = argv[1];
     vector<string> blobs = split(boardConfig,',');
     vector<vector<int>> board;
     int jB,iB;

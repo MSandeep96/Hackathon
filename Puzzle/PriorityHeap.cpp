@@ -48,15 +48,14 @@ void PriorityHeap::bubbleDown(int curPos)
     rightPos = curPos * 2 + 2;
     BoardState cur,left,right;
     cur = heap[curPos];
-    swapPos = -1;
+    swapPos = curPos;
     if((leftPos < heap.size()) && heap[leftPos].cost < cur.cost) {
         swapPos = leftPos;
     }
-    if((rightPos < heap.size()) && heap[rightPos].cost < heap[leftPos].cost
-        && heap[rightPos].cost < cur.cost) {
+    if((rightPos < heap.size()) && heap[rightPos].cost < heap[swapPos].cost) {
         swapPos = rightPos;
     }
-    if(swapPos != -1){
+    if(swapPos != curPos){
         heap[curPos] = heap[swapPos];
         heap[swapPos] = cur;
         bubbleDown(swapPos);

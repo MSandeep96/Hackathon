@@ -16,6 +16,7 @@ router.get('/leaderboard', function(req,res,next) {
 });
 
 router.post('/solve', function(req,res,next){
+  req.setTimeout(1000000);
   solver(req.body.config)
   .then((ans)=>{
     res.send(ans);

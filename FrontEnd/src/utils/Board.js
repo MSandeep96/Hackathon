@@ -73,7 +73,7 @@ export default class Board {
   static createRandomBoard(){
     let board = new Board(), last = "";
     let i = 0;
-    while(i < 5){
+    while(i < 200){
       let valM = Board.validMoves(board);
       let move = valM[~~(Math.random() * 4)];
       if(!Board.isOppositeLast(move,last)){
