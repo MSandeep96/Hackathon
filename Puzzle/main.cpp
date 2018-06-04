@@ -72,7 +72,7 @@ int main(int argc, char** argv)
     }
     srand(unsigned(time(0)));
     //config string
-    string boardConfig = argv[1];
+    string boardConfig = "1,2,3,4,5,6,7,8,9,10,11,12,-1,13,14,15";
     vector<string> blobs = split(boardConfig,',');
     vector<vector<int>> board;
     int jB,iB;
