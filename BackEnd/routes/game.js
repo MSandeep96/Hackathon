@@ -7,7 +7,7 @@ var authenticate = require('../middleware/authenticate');
 router.use(authenticate);
 
 router.get('/',function(req,res,next){
-  req.body.user.getUserConfig((doc)=>{
+  req.body.user.getUserConfig().then((doc)=>{
     res.send(doc);
   });
 });

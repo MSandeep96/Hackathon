@@ -1,1 +1,4 @@
 /BackEnd/node_modules
+/Puzzle/obj
+/Puzzle/bin
+/.vscode

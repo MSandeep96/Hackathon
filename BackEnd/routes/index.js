@@ -16,7 +16,7 @@ router.get('/leaderboard', function(req,res,next) {
 });
 
 router.post('/solve', function(req,res,next){
-  solver.solveBoard(req.body.config)
+  solver(req.body.config)
   .then((moves,timeTaken)=>{
     var answer = {
       moves,
@@ -24,7 +24,10 @@ router.post('/solve', function(req,res,next){
     };
     res.send(answer);
   })
-})
+  .catch((err)=>{
+    console.log(err);
+  });
+});
 
 
 module.exports = router;

@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/user', usersRouter);
+app.use('/users', usersRouter);
 app.use('/game', gameRouter);
 
 // catch 404 and forward to error handler
@@ -34,7 +34,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err.message);
 });
 
 module.exports = app;
