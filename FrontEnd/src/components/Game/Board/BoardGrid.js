@@ -6,6 +6,7 @@ import Board from '../../../utils/Board';
 import Shuffle from '../Buttons/Shuffle';
 import Solve from '../Buttons/Solve';
 import solve from '../../../actions/Solve';
+import Timer from '../Timer/Timer';
 
 const styles = theme => ({
   root: {
@@ -22,24 +23,31 @@ class BoardGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      board: Board.createRandomBoard()
+      board: Board.createRandomBoard(),
+      gameStarted: false
     };
   }
 
   newGame = ()=>{
     this.setState({
-      board: Board.createRandomBoard()
+      board: Board.createRandomBoard(),
+      gameStarted: false
     });
   }
 
   keyPressed = (e) => {
     if("wasd".indexOf(e.key) === -1)
       return;
+    if(!this.state.gameStarted){
+      this.state.startT();
+      this.setState({
+        gameStarted: true
+      });
+    }
     var board = {...this.state.board};
     Board.checkAndMove(board,e.key);
     if(Board.isComplete(board)){
-      console.log('here');
-      this.props.gameComplete(this.newGame);  
+      this.props.gameComplete(this.newGame, this.state.stopT, board.moves);  
     }
     this.setState({
       board
@@ -49,6 +57,7 @@ class BoardGrid extends React.Component {
   solve = ()=>{
     let config = Board.getConfigString(this.state.board.board);
     solve(config).then((res)=>{
+      console.log(res);
       this.startSolveSequence(res,0);
     });
   }
@@ -60,9 +69,15 @@ class BoardGrid extends React.Component {
       board
     });
     if(i < res.length){
-      setInterval(this.startSolveSequence, 1000, res, i+1);
+      this.timeOut = setTimeout(this.startSolveSequence, 1000, res, i+1);
     }
   }
+
+  timerBinder = (startT,stopT)=>{
+    this.setState({
+      startT,stopT
+    });
+  };
 
   render() {
     const { classes } = this.props;
@@ -82,6 +97,7 @@ class BoardGrid extends React.Component {
         </Grid>
         <Solve solve={this.solve}/>
         <Shuffle newGame={this.newGame}/>
+        <Timer binder={this.timerBinder} />
       </div>
     );
   }

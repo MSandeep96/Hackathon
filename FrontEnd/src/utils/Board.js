@@ -4,11 +4,13 @@ export default class Board {
     this.board = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, -1]];
     this.bpi = 3;
     this.bpj = 3;
+    this.moves = "";
   }
 
   static checkAndMove(brd, a){
     if (Board.validMoves(brd).indexOf(a) === -1)
       return;
+    brd.moves += a;
     Board.makeMove(brd,a);
   }
 

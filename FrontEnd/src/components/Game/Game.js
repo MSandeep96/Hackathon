@@ -8,10 +8,12 @@ class Game extends Component {
     gameComplete: false
   };
 
-  gameComplete = (newGame) => {
+  gameComplete = (newGame, time, moves) => {
     this.setState({
       gameCompletedMode: true,
-      newGame: newGame
+      newGame: newGame,
+      time,
+      moves
     });
   }
 
@@ -20,10 +22,6 @@ class Game extends Component {
     this.setState({
       gameCompletedMode: false
     });
-  }
-
-  solve = () =>{
-
   }
 
   render() {
