@@ -8,6 +8,11 @@ const styles = {
     height: 100,
     width: 100,
     textAlign: 'center'
+  },
+  paperBlank : {
+    height: 100,
+    width: 100,
+    opacity: 0
   }
 };
 
@@ -15,7 +20,7 @@ class Box extends Component {
   render() {
     const { classes } = this.props;
     if(this.props.num === -1)
-      return null;
+      return (<Paper className={classes.paper}/>);
     return (
       <Paper className={classes.paper}>
         <Typography variant="headline" color="inherit">

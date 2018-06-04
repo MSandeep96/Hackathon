@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Board from './Board/Board';
+import BoardGrid from './Board/BoardGrid';
 
 class Game extends Component {
 
@@ -10,7 +10,7 @@ class Game extends Component {
   render() {
     return (
       <div>
-        <Board />
+        <BoardGrid />
       </div>
     );
   }

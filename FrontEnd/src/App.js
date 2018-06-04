@@ -12,8 +12,6 @@ class App extends Component {
       isLoggedIn : false,
       showLoginDialog: false
     };
-    this.handleLogin = this.handleLogin.bind(this);
-    this.loginSuccess = this.loginSuccess.bind(this);
   }
 
   componentWillMount() {
@@ -25,14 +23,14 @@ class App extends Component {
   }
 
 
-  handleLogin(e){
+  handleLogin = (e) => {
     e.preventDefault();
     this.setState({
       showLoginDialog: true
     });
   }
 
-  loginSuccess(){
+  loginSuccess = () => {
     this.setState({
       isLoggedIn : true,
       showLoginDialog : false

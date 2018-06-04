@@ -1,11 +1,10 @@
 import axios from 'axios';
 import baseUrl from './api';
 
-export function signin(user){
-  return axios.post(baseUrl + 'users', user)
-    .then((res) => {
-      localStorage.setItem('auth', res.headers['x-auth']);
-      return res.data;
+export default getLeaderboard(){
+  return axios.get(baseUrl + '/leaderboard')
+    .then((docs)=>{
+      return docs;
     })
     .catch((err) => {
       if(err.response.status < 500)
