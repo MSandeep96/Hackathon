@@ -7,7 +7,8 @@ const styles = {
   paper: {
     height: 100,
     width: 100,
-    textAlign: 'center'
+    textAlign: 'center',
+    msUserSelect: 'none'
   },
   paperBlank : {
     height: 100,
