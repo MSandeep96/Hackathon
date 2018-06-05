@@ -52,7 +52,7 @@ class App extends Component {
         <TitleBar isLoggedIn={this.state.isLoggedIn}
           handleLogin={this.handleLogin}/>
         {this.state.showLoginDialog && <Login loginSuccess={this.loginSuccess} close={this.closeDialog}/>}
-        {/* <LeaderBoard /> */}
+        <LeaderBoard />
         <Game />
       </div>
     );

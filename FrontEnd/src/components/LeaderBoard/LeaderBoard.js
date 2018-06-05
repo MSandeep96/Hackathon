@@ -3,10 +3,18 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import getLeaderboard from '../../actions/LeadearBoard';
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography } from '@material-ui/core';
+import getTime from '../../utils/Time';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({
+  root: {
+    width: 300,
+		backgroundColor: 'grey',
+		float: 'left'
+  }
+});
 
-
-export default class LeaderBoard extends Component {
+class LeaderBoard extends Component {
 	state = {
 		users : [],
 		isLoading : true
@@ -36,7 +44,7 @@ export default class LeaderBoard extends Component {
 					<CardContent>
 						<Typography component = "h2">Name: {user.username}</Typography>
 						<Typography component = "h3">Best Moves: {user.bestMoves}</Typography>
-						<Typography component = "h3">Best Time: {user.bestTime}</Typography>
+						<Typography component = "h3">Best Time: {getTime(user.bestTime)}</Typography>
 					</CardContent>
 				</Card>
 				);
@@ -45,8 +53,9 @@ export default class LeaderBoard extends Component {
 	}
 
 	render() {
+    const { classes } = this.props;
     	return (
-      		<div>
+      		<div className={classes.root}>
 						{this.showLoader()}
 						{this.showLeaderBoard()}
       		</div>
@@ -54,3 +63,4 @@ export default class LeaderBoard extends Component {
   	}
 }
 
+export default withStyles(styles)(LeaderBoard);

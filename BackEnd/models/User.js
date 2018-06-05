@@ -74,7 +74,7 @@ class UserClass {
 
   static getLeaderBoard(){
     return User.find({}).sort('bestTime').limit(10)
-      .select('username bestTime bestMoves').exec();
+      .exec();
   }
 
   storeUserConfig(boardConfig){
@@ -98,11 +98,6 @@ class UserClass {
     return user.save();
   }
 
-}
-
-userSchema.methods.toJSON = function () {
-  var user = this.toObject();
-  return pick(user, ['username']);
 }
 
 

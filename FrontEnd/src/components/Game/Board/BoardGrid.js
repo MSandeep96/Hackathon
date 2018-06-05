@@ -9,12 +9,17 @@ import solve from '../../../actions/Solve';
 import Timer from '../Timer/Timer';
 
 const styles = theme => ({
+  divst :{
+    outline: 'none !important'
+  },
   root: {
     flexGrow: 1,
     height: 400,
     width: 400,
     margin: 20,
     backgroundColor: 'grey',
+    float: 'left',
+    marginLeft: 100
   }
 });
 
@@ -96,7 +101,7 @@ class BoardGrid extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div tabIndex="0" onKeyPress={this.keyPressed}>
+      <div tabIndex="0" onKeyPress={this.keyPressed} className={classes.divst}>
         <Grid container className={classes.root}>
           {
             this.state.board.board.map((val)=>{

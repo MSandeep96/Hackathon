@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/leaderboard', function(req,res,next) {
   User.getLeaderBoard().then((leaderboard)=>{
+    console.log(leaderboard);
     res.send(leaderboard);
   });
 });
