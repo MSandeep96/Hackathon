@@ -17,6 +17,14 @@ var solveBoard = function(boardConfig) {
   });
 };
 
+var solve = function(config){
+  let promArr = [];
+  for(let i=0;i<4;i++){
+    promArr.push(solveBoard(config));
+  }
+  return Promise.race(promArr);
+}
+
 function convertAns(str){
   let ans = "";
   for(let i=0;i<str.length;i++){
@@ -34,4 +42,4 @@ function getOpp(dir){
   }
 }
 
-module.exports = solveBoard;
+module.exports = solve;

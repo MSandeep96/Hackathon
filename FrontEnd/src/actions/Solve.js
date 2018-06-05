@@ -1,6 +1,5 @@
 import axios from 'axios';
 import baseUrl from './api';
-import getTime from '../utils/Time';
 
 export default function solve(config){
   //waits for 5 mins

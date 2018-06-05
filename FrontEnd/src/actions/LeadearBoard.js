@@ -4,7 +4,7 @@ import baseUrl from './api';
 export default function getLeaderboard(){
   return axios.get(baseUrl + 'leaderboard')
     .then((docs)=>{
-      return docs;
+      return docs.data;
     })
     .catch((err) => {
       if(err.response.status < 500)

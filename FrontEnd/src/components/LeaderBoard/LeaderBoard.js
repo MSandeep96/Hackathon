@@ -4,6 +4,8 @@ import getLeaderboard from '../../actions/LeadearBoard';
 import Card from '@material-ui/core/Card';
 import { CardContent, Typography } from '@material-ui/core';
 
+
+
 export default class LeaderBoard extends Component {
 	state = {
 		users : [],
@@ -12,6 +14,7 @@ export default class LeaderBoard extends Component {
 	componentWillMount(){
 		getLeaderboard()
 		.then((docs) => {
+			console.log(docs);		
 			this.setState({
 				users: docs,
 				isLoading: false
@@ -24,6 +27,9 @@ export default class LeaderBoard extends Component {
 	}
 
 	showLeaderBoard = () => {
+		if(this.state.isLoading)
+			return;
+		console.log(this.state.users);
 		return this.state.users.map( (user) => {
 			return (
 				<Card key={user.username}>
