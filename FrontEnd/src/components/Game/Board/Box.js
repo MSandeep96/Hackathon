@@ -8,12 +8,16 @@ const styles = {
     height: 100,
     width: 100,
     textAlign: 'center',
-    msUserSelect: 'none'
+    msUserSelect: 'none',
   },
   paperBlank : {
     height: 100,
     width: 100,
     opacity: 0
+  },
+  center: {
+    boxSizing: 'border-box',
+    paddingTop: 30
   }
 };
 
@@ -24,7 +28,7 @@ class Box extends Component {
       return (<Paper className={classes.paper}/>);
     return (
       <Paper className={classes.paper}>
-        <Typography variant="headline" color="inherit">
+        <Typography className={classes.center} variant="headline" color="inherit">
           {this.props.num}
         </Typography>
       </Paper>

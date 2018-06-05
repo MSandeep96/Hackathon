@@ -7,19 +7,20 @@ import Shuffle from '../Buttons/Shuffle';
 import Solve from '../Buttons/Solve';
 import solve from '../../../actions/Solve';
 import Timer from '../Timer/Timer';
+import getTime from '../../../utils/Time';
 
 const styles = theme => ({
   divst :{
-    outline: 'none !important'
+    outline: 'none !important',
+    float: 'left',
+    marginLeft: 100
   },
   root: {
     flexGrow: 1,
     height: 400,
     width: 400,
     margin: 20,
-    backgroundColor: 'grey',
-    float: 'left',
-    marginLeft: 100
+    backgroundColor: 'grey'
   }
 });
 
@@ -65,12 +66,14 @@ class BoardGrid extends React.Component {
   solve = ()=>{
     if(this.state.inSolveState)
       return;
+    this.state.stopT();
     let config = Board.getConfigString(this.state.board.board);
     solve(config).then((res)=>{
       console.log(res);
       this.setState({
         inSolveState: true
       });
+      console.log(getTime(res.time));
       this.startSolveSequence(res.moves,0);
     });
   }
@@ -86,7 +89,7 @@ class BoardGrid extends React.Component {
       this.timeOut = setTimeout(this.startSolveSequence, 1000, res, i+1);
     }else{
       this.setState({
-        inSolveState : false
+        inSolveState : false,
       });
     }
   }
@@ -113,9 +116,9 @@ class BoardGrid extends React.Component {
             })
           }
         </Grid>
+        <Timer binder={this.timerBinder} />
         <Solve solve={this.solve}/>
         <Shuffle newGame={this.newGame}/>
-        <Timer binder={this.timerBinder} />
       </div>
     );
   }
